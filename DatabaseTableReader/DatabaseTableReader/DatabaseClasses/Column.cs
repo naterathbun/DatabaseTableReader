@@ -11,12 +11,17 @@ namespace DatabaseTableReader.DatabaseClasses
 {
     public class Column
     {
-        private string columnHeading;
-        private List<string> rows = new List<string>();
+        public string ColumnHeading { get; set; }
+        public List<string> Rows { get; set; } = new List<string>();
 
         public Column(string columnHeading)
         {
-            this.columnHeading = columnHeading;
+            this.ColumnHeading = columnHeading;
+        }
+
+        public void AddRow(string newRow)
+        {
+            this.Rows.Add(newRow);
         }
 
     }

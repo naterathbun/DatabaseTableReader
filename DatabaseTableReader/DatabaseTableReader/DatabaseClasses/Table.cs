@@ -11,17 +11,17 @@ namespace DatabaseTableReader.DatabaseClasses
 {
     public class Table
     {
-        private string tableName;
-        private List<Column> columns = new List<Column>();
+        public string TableName { get; set; }
+        public List<Column> Columns { get; set; } = new List<Column>();
 
         public Table(string tableName)
         {
-            this.tableName = tableName;
+            this.TableName = tableName;
         }
 
-        public string GetTableName()
+        public void AddColumn(string columnName)
         {
-            return this.tableName;
+            this.Columns.Add(new Column(columnName));
         }
 
     }

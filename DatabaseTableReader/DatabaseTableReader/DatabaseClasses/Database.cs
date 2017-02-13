@@ -11,16 +11,12 @@ namespace DatabaseTableReader.DatabaseClasses
 {
     public class Database
     {
-        private List<Table> tables = new List<Table>();
+        public List<Table> Tables { get; set; } = new List<Table>();
 
         public void AddTable(string tableName)
         {
-            this.tables.Add(new Table(tableName));
+            this.Tables.Add(new Table(tableName));
         }
 
-        public List<Table> GetTablesList()
-        {
-            return this.tables;
-        }
     }
 }
