@@ -16,18 +16,18 @@ namespace DatabaseTableReader
         {
             Database database = new Database();
             string dataBaseSourceInformation = GetDataBaseSource();
-
-
-
+            
             using (SqlConnection connection = new SqlConnection(dataBaseSourceInformation))
             {
                 connection.Open();
-                // EVERYTHING WE NEED TO DO TO READ IN AND SAVE THE TABLE / COLUMNS / ROWS INFO STARTS HERE
                 AddTablesToDatabase(database, connection);
 
+                AddColumnsToTable();
+                // Add Column rows
+                
+                // Display Column Names for a specific table
+                // Display rows for a specific column in a specific table
 
-
-                // AND IT STOPS HERE
             }
 
 
@@ -44,14 +44,24 @@ namespace DatabaseTableReader
             }
         }
 
-        private static void DisplayTablesInDatabase(Database database)
+        private static void AddColumnsToTable()
+        {
+            // add looped action here to generate new columns list for each table
+
+
+
+
+        }
+
+
+
+        private static void DisplayTablesFromDatabase(Database database)
         {
             for (int i = 0; i < database.GetTablesList().Count(); i++)
             {
                 Console.WriteLine(database.GetTablesList()[i].GetTableName());
             }
         }
-
 
 
 

@@ -7,16 +7,11 @@ using System.IO;
 using System.Data.SqlClient;
 using DatabaseTableReader.DatabaseClasses;
 
-namespace DatabaseTableReader
+namespace DatabaseTableReader.DatabaseClasses
 {
     public class Database
     {
         private List<Table> tables = new List<Table>();
-
-        public Database()
-        {
-
-        }
 
         public void AddTable(string tableName)
         {
