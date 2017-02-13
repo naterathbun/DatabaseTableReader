@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseClasses\Column.cs" />
+    <Compile Include="DatabaseClasses\Database.cs" />
+    <Compile Include="DatabaseClasses\Table.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
