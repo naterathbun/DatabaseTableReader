@@ -23,6 +23,5 @@ namespace DatabaseTableReader.DatabaseClasses
         {
             this.Rows.Add(newRow);
         }
-
     }
 }

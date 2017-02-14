@@ -17,22 +17,22 @@ namespace DatabaseTableReader
             Database database = new Database();
             string dataBaseSourceInformation = GetDataBaseSource();
 
-            PopulateLocalDatabase(database, dataBaseSourceInformation);
+            GetInformationFromDatabase(database, dataBaseSourceInformation);
 
             MenuCLI.OpenMenu(database);
         }
 
 
-        private static void PopulateLocalDatabase(Database database, string dataBaseSourceInformation)
+        private static void GetInformationFromDatabase(Database database, string dataBaseSourceInformation)
         {
             using (SqlConnection connection = new SqlConnection(dataBaseSourceInformation))
             {
                 connection.Open();
-                ReadInformationFromDatabase(database, connection);
+                PopulateDatabaseClasses(database, connection);
             }
         }
 
-        private static void ReadInformationFromDatabase(Database database, SqlConnection connection)
+        private static void PopulateDatabaseClasses(Database database, SqlConnection connection)
         {
             AddTablesToDatabase(database, connection);
             AddColumnsToTable(database, connection);
