@@ -3,57 +3,107 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DatabaseTableReader.DatabaseClasses;
 
 namespace DatabaseTableReader
 {
-    public class MenuCLI
+    public static class MenuCLI
     {
-        public void OpenMenu()
+        public static void OpenMenu(Database database)
         {
             while (true)
             {
-                string optionPicked = Console.ReadLine();
+                ShowMenuHeader(database);
+                string tableName = Console.ReadLine();
+                DisplayTableContents(database, tableName);
 
-                Dictionary<string, Action> commands = new Dictionary<string, Action>()
-                {
-                    {"0", Option1 },
-                    {"1", Option2 },
-                    {"2", Option3 },
-                    {"3", Option4 }
-                };
 
-                if (commands.ContainsKey(optionPicked))
-                {
-                    commands[optionPicked].Invoke();
-                }
-                else
-                {
-                    Console.WriteLine("Option Unavailable: Press Enter to Choose Again.");
-                    Console.ReadLine();
-                }
+                Console.ReadLine();
+            }
+
+        }
+
+        private static void ShowMenuHeader(Database database)
+        {
+            Console.Clear();
+            Console.WriteLine("SQL Database Information Reader");
+            Console.WriteLine("-------------------------------");
+            DisplayTablesFromDatabase(database);
+            Console.WriteLine("\n-------------------------------");
+            Console.Write("Choose a Table to Display: ");
+        }
+
+
+        private static void DisplayTablesFromDatabase(Database database)
+        {
+            for (int i = 0; i < database.Tables.Count(); i++)
+            {
+                Console.Write(database.Tables[i].TableName + " | ");
             }
         }
 
-        public void Option1()
+        private static void DisplayTableContents(Database database, string tableName)
         {
+            int tableId = GetTableId(database, tableName);
 
+            DisplayColumnHeadings(database, tableId);
+            DisplayRowContents(database, tableId);
         }
 
-        public void Option2()
+        private static void DisplayRowContents(Database database, int tableId)
         {
-
+            for (int i = 0; i < database.Tables[tableId].Columns[0].Rows.Count(); i++)
+            {
+                for (int j = 0; j < database.Tables[tableId].Columns.Count(); j++)
+                {
+                    Console.Write(database.Tables[tableId].Columns[j].Rows[i].ToString());
+                    Console.Write(" | ");
+                }
+                Console.Write("\n");
+            }
         }
 
-        public void Option3()
+        private static void DisplayColumnHeadings(Database database, int tableId)
         {
-
+            Console.WriteLine("-----------------------------------------------------");
+            for (int j = 0; j < database.Tables[tableId].Columns.Count(); j++)
+            {
+                Console.Write(database.Tables[tableId].Columns[j].ColumnHeading.ToString());
+                Console.Write(" | ");
+            }
+            Console.Write("\n");
         }
 
-        public void Option4()
-        {
 
+        private static int GetTableId(Database database, string tableName)
+        {
+            int tableID = 0;
+
+            for (int i = 0; i < database.Tables.Count(); i++)
+            {
+                if (database.Tables[i].TableName == tableName)
+                {
+                    tableID = i;
+                }
+            }
+
+            return tableID;
         }
 
+        private static int GetColumnId(Database database, int tableId, string columnName)
+        {
+            int columnId = 0;
+
+            for (int i = 0; i < database.Tables[tableId].Columns.Count(); i++)
+            {
+                if (database.Tables[tableId].Columns[i].ColumnHeading == columnName)
+                {
+                    columnId = i;
+                }
+            }
+
+            return columnId;
+        }
 
     }
 }

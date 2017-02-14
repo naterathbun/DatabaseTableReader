@@ -19,9 +19,7 @@ namespace DatabaseTableReader
 
             PopulateLocalDatabase(database, dataBaseSourceInformation);
 
-
-
-            Console.ReadLine();
+            MenuCLI.OpenMenu(database);
         }
 
 
@@ -92,71 +90,7 @@ namespace DatabaseTableReader
 
 
         }
-
-
-        private static void DisplayTablesFromDatabase(Database database)
-        {
-            for (int i = 0; i < database.Tables.Count(); i++)
-            {
-                Console.WriteLine(database.Tables[i].TableName);
-            }
-        }
-
-        private static void DisplayColumnNamesFromTable(Database database, string tableName)
-        {
-            int tableId = GetTableId(database, tableName);
-
-            for (int i = 0; i < database.Tables[tableId].Columns.Count(); i++)
-            {
-                Console.WriteLine(database.Tables[tableId].Columns[i].ColumnHeading);
-            }
-
-
-        }
-
-        private static void DisplayRowsFromColumn(Database database, string tableName, string columnName)
-        {
-            int tableId = GetTableId(database, tableName);
-            int columnId = GetColumnId(database, tableId, columnName);
-
-            for (int i = 0; i < database.Tables[tableId].Columns[columnId].Rows.Count(); i++)
-            {
-                Console.WriteLine(database.Tables[tableId].Columns[columnId].Rows[i]);
-            }
-
-
-        }
-
-
-        private static int GetTableId(Database database, string tableName)
-        {
-            int tableID = 0;
-
-            for (int i = 0; i < database.Tables.Count(); i++)
-            {
-                if (database.Tables[i].TableName == tableName)
-                {
-                    tableID = i;
-                }
-            }
-
-            return tableID;
-        }
-
-        private static int GetColumnId(Database database, int tableId, string columnName)
-        {
-            int columnId = 0;
-
-            for (int i = 0; i < database.Tables[tableId].Columns.Count(); i++)
-            {
-                if (database.Tables[tableId].Columns[i].ColumnHeading == columnName)
-                {
-                    columnId = i;
-                }
-            }
-
-            return columnId;
-        }
+        
 
         private static string GetDataBaseSource()
         {
