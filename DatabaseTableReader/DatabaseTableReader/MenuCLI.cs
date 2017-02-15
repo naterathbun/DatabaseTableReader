@@ -16,8 +16,6 @@ namespace DatabaseTableReader
                 ShowMenuHeader(database);
                 string tableName = Console.ReadLine();
                 DisplayTableContents(database, tableName);
-
-
                 Console.ReadLine();
             }
 
@@ -30,7 +28,7 @@ namespace DatabaseTableReader
             Console.WriteLine("-------------------------------");
             DisplayTablesFromDatabase(database);
             Console.WriteLine("\n-------------------------------");
-            Console.Write("Choose a Table to Display: ");
+            Console.Write("Choose a Table from above to Display: ");
         }
 
 

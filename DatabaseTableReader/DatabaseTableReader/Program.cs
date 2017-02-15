@@ -16,9 +16,7 @@ namespace DatabaseTableReader
         {
             Database database = new Database();
             string dataBaseSourceInformation = GetDataBaseSource();
-
             GetInformationFromDatabase(database, dataBaseSourceInformation);
-
             MenuCLI.OpenMenu(database);
         }
 
@@ -31,6 +29,7 @@ namespace DatabaseTableReader
                 PopulateDatabaseClasses(database, connection);
             }
         }
+
 
         private static void PopulateDatabaseClasses(Database database, SqlConnection connection)
         {
@@ -90,7 +89,7 @@ namespace DatabaseTableReader
 
 
         }
-        
+
 
         private static string GetDataBaseSource()
         {
